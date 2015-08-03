@@ -142,6 +142,7 @@ module HelloSign
 
     def make_connection options
       url = options[:oauth_request] ? oauth_end_point : end_point
+      url = URI(url) #otherwise Faraday breaks when used in rails because of different URI loaded
 
       if @logging
         logger = Logger.new(STDOUT)
